@@ -1,0 +1,31 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2026-03-16T20:10:24+01:00",
+    "name": "eggy",
+    "author": "fire@gmail.com",
+    "description": null,
+    "features": [],
+    "docker_images": {
+        "ghcr.io\/mikahael\/bombsquad-alpine:latest": "ghcr.io\/mikahael\/bombsquad-alpine:latest"
+    },
+    "file_denylist": [],
+    "startup": ".\/bombsquad_server -p $SERVER_PORT",
+    "config": {
+        "files": "{\r\n    \"server.properties\": {\r\n        \"parser\": \"properties\",\r\n        \"find\": {\r\n            \"server-ip\": \"0.0.0.0\",\r\n            \"server-port\": \"{{server.build.default.port}}\",\r\n            \"query.port\": \"{{server.build.default.port}}\"\r\n        }\r\n    }\r\n}",
+        "startup": "{\r\n    \"done\": \")! For help, type \"\r\n}",
+        "logs": "{}",
+        "stop": "^c"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/ash\r\ncd \/mnt\/server\r\n\r\n# Install git if needed\r\napk add --no-cache git bash\r\n\r\n# Clone the server files directly into the server folder\r\ngit clone https:\/\/github.com\/Mikahael\/PCModderServerFiles-FINAL.git .\r\n\r\n# Ensure binaries are executable\r\nchmod +x bombsquad_server bs_headless\r\n\r\nsed -i \"s\/DEFAULT_PORT_HERE\/${SERVER_PORT}\/g\" bombsquad_server",
+            "container": "alpine:3.15",
+            "entrypoint": "ash"
+        }
+    },
+    "variables": []
+}
